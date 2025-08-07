@@ -1,0 +1,35 @@
+# Data Sync Configuration
+# Each sync_pair defines a folder-to-repo mapping with specific settings
+
+sync_pairs:
+  - name: "DSA map"
+    local_folder: "/home/alyson/Applications/Obsidian/Vaults/General CS/DSA"
+    github_repo: "alyson-mei/dsa-map"
+    github_token: "${GITHUB_TOKEN_1}"  # Use environment variables for security
+    autocommit_time: 60  # seconds (5 minutes)
+    branch: "main"
+    commit_message_template: "Autocommit: {timestamp}"
+    ignore_patterns:
+      - "*.tmp"
+      - ".DS_Store"
+      - "*.log"
+    
+  - name: "RecSys"
+    local_folder: "/home/alyson/Applications/Obsidian/Vaults/ML/RecSys"
+    github_repo: "alyson-mei/recsys"
+    github_token: "${GITHUB_TOKEN_2}"
+    autocommit_time: 60  # seconds (1 minute)
+    branch: "main"
+    commit_message_template: "Autocommit: {timestamp}"
+    ignore_patterns:
+      - "__pycache__"
+      - "*.pyc"
+      - ".env"
+
+# Global settings
+global:
+  sync_interval: 60  # seconds between sync checks
+  max_retries: 3
+  retry_delay: 10  # seconds
+  log_level: "INFO"
+  log_file: "sync.log"
